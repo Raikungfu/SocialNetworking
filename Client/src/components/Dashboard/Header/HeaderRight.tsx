@@ -36,7 +36,7 @@ const UserAccount: React.FC<{name?: String, avt?: String}> = ({name, avt}) => {
     localStorage.clear();
     Cookies.remove('accessToken')
     Cookies.remove('refreshToken')
-    nav('/login');
+    nav("./login")
   }
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -73,14 +73,14 @@ const UserAccount: React.FC<{name?: String, avt?: String}> = ({name, avt}) => {
         </Stack>
         {isMenuOpen && (
           <div
-            className="menu absolute bg-transparent w-full z-50 rounded shadow-lg overflow-hidden border-t-[20px] border-t-transparent"
+            className="menu absolute bg-transparent w-fit z-50 rounded shadow-lg overflow-hidden border-t-[20px] border-t-transparent"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeaveMenu}
           >
             <ul className="bg-[#827d7d21] dark:bg-slate-950">
-              <li className="p-2 hover:bg-[#827d7d21] hover:bg-opacity-80">Profile</li>
-              <li className="p-2 hover:bg-[#827d7d21] hover:bg-opacity-80">Settings</li>
-              <li className="p-2 hover:bg-[#827d7d21] hover:bg-opacity-80" onClick={handleLogout}>
+              <li className="py-2 px-10 hover:bg-[#827d7d21] hover:bg-opacity-80">Profile</li>
+              <li className="py-2 px-10 hover:bg-[#827d7d21] hover:bg-opacity-80">Settings</li>
+              <li className="py-2 px-10 hover:bg-[#827d7d21] hover:bg-opacity-80" onClick={handleLogout}>
                 Log out
               </li>
             </ul>

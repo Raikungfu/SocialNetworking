@@ -1,8 +1,6 @@
 import axios from "axios";
-import { API_BASE_URL } from "./configURL";
 import Cookies from "js-cookie";
-
-
+import { API_BASE_URL } from "./configURL";
 
 const Axios = axios.create({
   baseURL: API_BASE_URL,
@@ -11,7 +9,6 @@ const Axios = axios.create({
   },
   withCredentials: true,
 });
-
 
 Axios.interceptors.request.use(
   (config) => {
@@ -31,29 +28,28 @@ Axios.interceptors.response.use(
   },
   async (error) => {
     let refreshToken = Cookies.get("refreshToken");
-    
+
     if (refreshToken && error.response.status === 403) {
       try {
-            const res = await axios
-                .post(
-                    `${API_BASE_URL}/authentication/refreshToken`,
-                    {},
-                    {
-                        withCredentials: true,
-                    }
-                );
+        const res = await axios.post(
+          `${API_BASE_URL}/authentication/refreshToken`,
+          {},
+          {
+            withCredentials: true,
+          }
+        );
 
-            if (res.status === 200) {
-                Cookies.set("accessToken", res.data.accessToken);
-                return Promise.resolve(res.data);
-            }
-        } catch {
-            console.log("Error");
-            localStorage.clear();
-            location.reload();
+        if (res.status === 200) {
+          Cookies.set("accessToken", res.data.accessToken);
+          return Promise.resolve(res);
         }
-    }else{
-        console.log("Token expired")
+      } catch {
+        console.log("Error");
+        localStorage.clear();
+        location.reload();
+      }
+    } else {
+      console.log("Token expired");
     }
     return Promise.reject(error.response || error.message);
   }

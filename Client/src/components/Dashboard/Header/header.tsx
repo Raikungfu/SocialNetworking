@@ -1,6 +1,6 @@
 import { useState } from "react";
 import logo from "../../../assets/img/logo.png";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, Outlet } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import GroupIcon from "@mui/icons-material/Groups";
 import ChatIcon from "@mui/icons-material/QuestionAnswer";
@@ -58,6 +58,7 @@ const header: React.FC<THeaderComp> = ({}) => {
               <HeaderRight/>
             </nav>
           </header>
+      <Outlet />
     </div>
   );
 };

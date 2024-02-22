@@ -5,8 +5,7 @@ import { Post } from "./Post";
 const Content = () => {
   return (
     <div className="w-full flex flex-col items-center">
-        <Story />
-        
+      <Story />
       <Post />
     </div>
   );
