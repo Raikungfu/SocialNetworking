@@ -1,0 +1,9 @@
+export { default as QButton } from "./Dashboard/QButton";
+export { default as MenuLeft } from "./Dashboard/Menu/MenuLeft";
+export { default as MenuRight } from "./Dashboard/Menu/MenuRight";
+export { default as Header } from "./Dashboard/Header/header";
+export { default as Content } from "./Dashboard/Content/content";
+export { default as Dashboard } from "../pages/Dashboard/Dashboard";
+export { default as Login } from "./Dashboard/Login";
+export { default as Register } from "./Dashboard/Register";
+export { default as Page404 } from "../pages/Error/Page404";
