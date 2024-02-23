@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { NewPost } from "./NewPost";
-import { NewMeeting } from "./NewMeeting";
-import { NewStory } from "./NewStory";
+import { NewPost } from "./NewPost/NewPost";
+import { NewMeeting } from "./NewMeeting/NewMeeting";
+import { NewStory } from "./NewStory/NewStory";
 
-
-export const Post = () => {
+const Post = () => {
   const [isNewPost, setIsNewPost] = useState(true);
   const [isNewMeeting, setIsNewMeeting] = useState(false);
 
@@ -51,9 +50,13 @@ export const Post = () => {
           New Story
         </button>
       </div>
-      <InputComp/>
-      
-      <button className="bg-opacity-30 text-xs md:text-base border-solid bg-[#827d7d21] hover:bg-slate-200 border-[#fcfcfca1] border-[1px] rounded-[5px] p-2 px-[20px] md:px-[70px] mt-2 self-end">Post</button>
+      <InputComp />
+
+      <button className="bg-opacity-30 text-xs md:text-base border-solid bg-[#827d7d21] hover:bg-slate-200 border-[#fcfcfca1] border-[1px] rounded-[5px] p-2 px-[20px] md:px-[70px] mt-2 self-end">
+        Post
+      </button>
     </div>
   );
 };
+
+export default Post;

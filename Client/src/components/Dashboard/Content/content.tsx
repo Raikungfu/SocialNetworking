@@ -1,6 +1,6 @@
+import { Post } from "@/components";
 import Story from "./Story";
 import "./content.scss";
-import { Post } from "./Post";
 
 const Content = () => {
   return (

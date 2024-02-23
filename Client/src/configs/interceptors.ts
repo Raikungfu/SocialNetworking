@@ -12,9 +12,6 @@ const Axios = axios.create({
 
 Axios.interceptors.request.use(
   (config) => {
-    const accessToken = Cookies.get("accessToken");
-    if (accessToken) {
-    }
     return config;
   },
   (error) => {
@@ -27,7 +24,7 @@ Axios.interceptors.response.use(
     return Promise.resolve(response);
   },
   async (error) => {
-    let refreshToken = Cookies.get("refreshToken");
+    const refreshToken = Cookies.get("refreshToken");
 
     if (refreshToken && error.response.status === 403) {
       try {

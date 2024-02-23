@@ -1,22 +1,22 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 interface UserState {
   userState: {
-    state: String,
-    name?: String,
-    userName?: String,
-    avt?: String,
-  }
+    state: string;
+    name?: string;
+    userName?: string;
+    avt?: string;
+  };
 }
 
 const initialState: UserState = {
   userState: {
-    state: 'unactive'
-  }
+    state: "unactive",
+  },
 };
 
 export const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   reducers: {
     setState: (state: UserState, action) => {
@@ -24,8 +24,8 @@ export const userSlice = createSlice({
     },
     logoutUser: (state: UserState) => {
       state.userState = {
-        state: 'unactive'
-      }
+        state: "unactive",
+      };
     },
   },
 });
