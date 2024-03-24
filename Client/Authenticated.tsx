@@ -7,7 +7,6 @@ import AxiosApi from "@/configs/axios";
 const withAuth = (WrappedComponent: React.ComponentType<any>) => {
   const WithAuthComponent: React.FC = (props) => {
     const dispatch = useDispatch();
-    debugger;
     useEffect(() => {
       const checkLoginStatus = async () => {
         const response = await AxiosApi.get<RootState>("/", true, {});
@@ -19,7 +18,6 @@ const withAuth = (WrappedComponent: React.ComponentType<any>) => {
       };
       checkLoginStatus();
     }, [location.pathname]);
-    debugger;
     return <WrappedComponent {...props} />;
   };
 

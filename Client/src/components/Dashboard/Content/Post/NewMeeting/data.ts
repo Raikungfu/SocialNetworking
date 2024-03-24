@@ -9,7 +9,7 @@ export const TextareaSetup = {
   labelContent: "New Meeting",
 };
 
-export const DatatimeInputSetup = {
+export const DatetimeInputSetup = {
   dateTime: [
     {
       id: "dateFrom",

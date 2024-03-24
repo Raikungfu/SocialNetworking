@@ -17,4 +17,4 @@ const App: React.FC = () => {
   );
 };
 
-export default withAuth(App);
+export default App;

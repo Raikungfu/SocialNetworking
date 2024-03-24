@@ -1,39 +1,45 @@
 import { FormEvent } from "react";
 import logo from "../../assets/img/logo.png";
-import Cookies from 'js-cookie';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { setState } from "../../hooks/UserSlice";
 import AxiosApi from "@/configs/axios";
-import { RootState } from '../../hooks/rootReducer';
 
-  function Login() {
-    const dispatch = useDispatch();
-    const nav = useNavigate();
-    
-    interface responseData { accessToken: string, refreshToken: string, userName: string, avt: string, name: string };
-    const handleLogSubmit = async (event: FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
-      const formData = new FormData(event.currentTarget);
-      const email = formData.get("email") as string;
-      const password = formData.get("password") as string;
-      const response = await AxiosApi.post<responseData>('/User/login', false, { email: email, password: password});
+function Login() {
+  const dispatch = useDispatch();
+  const nav = useNavigate();
+
+  interface responseData {
+    accessToken: string;
+    refreshToken: string;
+    userName: string;
+    avt: string;
+    name: string;
+  }
+  const handleLogSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+    try {
+      const response = await AxiosApi.post<responseData>("/User/login", false, {
+        email: email,
+        password: password,
+      });
+      console.log(response);
       if (response.data) {
-      dispatch(setState({state: 'active', ...response.data}))
-      Cookies.set('accessToken', response.data.accessToken, { expires: 1 });
-      Cookies.set('refreshToken', response.data.refreshToken, { expires: 1 });
-      nav('../') 
-      } else{
-        const errorElement = document.createElement('span');
-        errorElement.textContent = response.error;
-        errorElement.style.color = "red";
-        document.getElementById("error")?.appendChild(errorElement)
-        setTimeout( 
-          () => errorElement.remove(),
-          3000
-        );
+        dispatch(setState({ state: "active", ...response.data }));
+        Cookies.set("accessToken", response.data.accessToken, { expires: 1 });
+        Cookies.set("refreshToken", response.data.refreshToken, { expires: 1 });
+        nav("../");
+      } else {
+        alert("sdsd login");
       }
-    };
+    } catch (error) {
+      alert("sdsd login");
+    }
+  };
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900  w-screen">
@@ -42,15 +48,14 @@ import { RootState } from '../../hooks/rootReducer';
           href="#"
           className="flex flex-col justify-around items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
         >
-          <img className="App-logo pb-3" src={logo} alt="logo"/>
+          <img className="App-logo pb-3" src={logo} alt="logo" />
           <h1 className="text-xs leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-        Sign in to your account
-              </h1>
+            Sign in to your account
+          </h1>
         </a>
-        
+
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-           
             <form
               className="space-y-4 md:space-y-6"
               onSubmit={(e) => handleLogSubmit(e)}
@@ -128,8 +133,8 @@ import { RootState } from '../../hooks/rootReducer';
                   Sign up
                 </a>
               </p>
-              
-              <div id="error" className="sr-only"></div>
+
+              <div id="error" className=""></div>
             </form>
           </div>
         </div>
@@ -137,6 +142,5 @@ import { RootState } from '../../hooks/rootReducer';
     </section>
   );
 }
-
 
 export default Login;
